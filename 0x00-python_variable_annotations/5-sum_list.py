@@ -1,17 +1,12 @@
 #!/usr/bin/env python3
-'''
-task 5
-'''
+""" Complex types - list of floats """
+from typing import List
 
 
-def sum_list(input_list: list) -> float:
+def sum_list(input_list: List[float]) -> float:
     """
-    Calculate the sum of all the elements in the input list.
-
-    Args:
-        input_list (list): A list of numbers.
-
-    Returns:
-        float: The sum of all the elements in the input list.
+    Takes a list input_list of floats as argument
+    returns their sum as a float.
     """
+
     return sum(input_list)
