@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
-"""task 0"""
+'''
+    The basics of async.
+'''
+
+from asyncio import sleep
+from random import uniform
 
 
-from random import random
+async def wait_random(max_delay: int = 10) -> float:
+    """
+    waits for a random delay between 0 and max_delay (included and float value)
+    seconds and eventually returns it.
+    """
+    d = uniform(0, max_delay)
+    await sleep(d)
 
-
-async def wait_random(max_delay=10):
-    d = random(max_delay)
     return d
-
-
-print(wait_random())
