@@ -20,7 +20,8 @@ def measure_time(n: int, max_delay: int) -> float:
 
     Args:
         n (int): The number of times to call the wait_n function.
-        max_delay (int): The maximum delay for each call to the wait_n function.
+        max_delay (int): The maximum delay for each call to the
+        wait_n function.
 
     Returns:
         float: The average runtime of the wait_n function in seconds.
