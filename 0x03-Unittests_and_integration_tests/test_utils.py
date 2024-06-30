@@ -5,8 +5,7 @@ unittest access_nested_map
 '''
 
 import unittest
-from unittest.mock import MagicMock, Mock
-from aiohttp import payload_type
+from unittest.mock import Mock
 from parameterized import parameterized
 from unittest.mock import Mock, patch
 from utils import access_nested_map, get_json, memoize
@@ -15,24 +14,28 @@ from utils import access_nested_map, get_json, memoize
 
 
 class TestGetJson(unittest.TestCase):
-    """ Class for Testing Get Json """
+    """Class for testing get_json function."""
 
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
-        ("http://holberton.io", {"payload": False})
+        ("http://holberton.io", {"payload": False}),
     ])
     @patch('requests.get')
-    def test_get_json(self, test_url, test_payload,  mocked_get):
-        """ Test for the utils.get_json function to check
-        that it returns the expected result."""
-        mock_res = Mock()
-        mock_res.json.return_value = test_payload  # Corrected typo here
+    def test_get_json(self, test_url, test_payload, mocked_get):
+        """Test that utils.get_json returns the expected result without
+        making actual HTTP calls."""
+        # Setup the mock to return the test payload
+        mock_response = Mock()
+        mock_response.json.return_value = test_payload
+        mocked_get.return_value = mock_response
 
-        mocked_get.return_value = mock_res  # Corrected typo here
+        # Call the function under test
+        result = get_json(test_url)
 
-        test_get = get_json(test_url)
+        mocked_get.assert_called_once_with(test_url)
 
-        self.assertEqual(test_get, test_payload)
+        # Assert that the result matches the test payload
+        self.assertEqual(result, test_payload)
 
 
 class TestAccessNestedMap(unittest.TestCase):
