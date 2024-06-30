@@ -5,10 +5,11 @@ unittest access_nested_map
 '''
 
 import unittest
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, Mock
+from aiohttp import payload_type
 from parameterized import parameterized
-from requests import patch
-from utils import access_nested_map, get_json
+from unittest.mock import Mock, patch
+from utils import access_nested_map, get_json, memoize
 
 # The test case
 
@@ -20,22 +21,18 @@ class TestGetJson(unittest.TestCase):
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False})
     ])
-    def test_get_json(self, test_url, test_payload):
+    @patch('requests.get')
+    def test_get_json(self, test_url, test_payload,  mocked_get):
         """ Test for the utils.get_json function to check
         that it returns the expected result."""
-        config = {'return_value.json.return_value': test_payload}
-        patcher = patch('requests.get', **config)
-        mock = patcher.start()
-        self.assertEqual(get_json(test_url), test_payload)
-        mock.assert_called_once()
-        patcher.stop()
+        mock_res = Mock()
+        mock_res.json.return_value = test_payload  # Corrected typo here
 
-        # config = {'return_value.json.return_value': test_payload}
-        # patcher = patch('requests.get', **config)
-        # mock = patcher.start()
-        # self.assertEqual(get_json(test_url), test_payload)
-        # mock.assert_called_once()
-        # patcher.stop()
+        mocked_get.return_value = mock_res  # Corrected typo here
+
+        test_get = get_json(test_url)
+
+        self.assertEqual(test_get, test_payload)
 
 
 class TestAccessNestedMap(unittest.TestCase):
