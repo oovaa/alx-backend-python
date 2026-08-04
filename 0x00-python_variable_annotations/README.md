@@ -1,51 +1,100 @@
-# ALX Backend Python
+# 0x00-python_variable_annotations — Type Hints & Static Analysis
 
-Welcome to the ALX Backend Python repository! This repository is designed to help you learn backend development using Python. Whether you are a beginner or an experienced programmer, this guide will provide you with the necessary knowledge and resources to get started with backend development.
+[![ALX](https://img.shields.io/badge/ALX-Backend%20Python-blue?style=flat-square&logo=python&logoColor=white)](https://www.alxafrica.com/)
+[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)]()
+[![mypy](https://img.shields.io/badge/mypy-type%20checking-blue.svg)]()
 
-## Table of Contents
+> **Python Variable Annotations** — Type hints for variables, functions, and complex types using `typing` module. Validated with `mypy`.
 
-1. [Introduction to Backend Development](#introduction-to-backend-development)
-2. [Setting Up Your Development Environment](#setting-up-your-development-environment)
-3. [Python Variable Annotations](#python-variable-annotations)
-4. [Working with Databases](#working-with-databases)
-5. [Building RESTful APIs](#building-restful-apis)
-6. [Authentication and Authorization](#authentication-and-authorization)
-7. [Testing and Debugging](#testing-and-debugging)
-8. [Deployment and Scaling](#deployment-and-scaling)
-9. [Additional Resources](#additional-resources)
+---
 
-## Introduction to Backend Development
+## 🎯 Overview
 
-In this section, you will learn the basics of backend development and understand its role in web applications. We will cover topics such as server-side programming, client-server architecture, and the role of backend frameworks.
+This project covers Python 3 type annotation syntax for variables, function signatures, and complex generic types. All exercises are validated with `mypy` strict mode.
 
-## Setting Up Your Development Environment
+---
 
-Before you can start building backend applications, you need to set up your development environment. In this section, we will guide you through the installation of Python, virtual environments, and other necessary tools.
+## 📁 Files
 
-## Python Variable Annotations
+| File | Description |
+|------|-------------|
+| `0-add.py` | Function `add(a: float, b: float) -> float` — basic type hints |
+| `1-concat.py` | Function `concat(str1: str, str2: str) -> str` — string concatenation |
+| `2-floor.py` | Function `floor(n: float) -> int` — using `math.floor` with annotations |
+| `3-to_str.py` | Function `to_str(n: float) -> str` — float to string |
+| `4-define_variables.py` | Annotated variable definitions: `a: int`, `pi: float`, `school: str`, `flag: bool` |
+| `5-sum_list.py` | Function `sum_list(input_list: List[float]) -> float` — List type |
+| `6-sum_mixed_list.py` | Function `sum_mixed_list(mxd_lst: List[Union[int, float]]) -> float` — Union type |
+| `7-to_kv.py` | Function `to_kv(k: str, v: Union[int, float]) -> Tuple[str, float]` — Tuple return |
+| `8-make_multiplier.py` | Function `make_multiplier(multiplier: float) -> Callable[[float], float]` — Callable type |
+| `9-element_length.py` | Function `element_length(lst: Iterable[Sequence]) -> List[Tuple[Sequence, int]]` — Iterable/Sequence |
+| `100-safe_first_element.py` | Function `safe_first_element(lst: Sequence[Any]) -> Optional[Any]` — Optional |
+| `101-safely_get_value.py` | Function `safely_get_value(dct: Mapping, key: Any, default: Optional[T] = None) -> Union[Any, T]` — Mapping, Generics |
+| `102-type_checking.py` | Type checking with `TYPE_CHECKING` for circular imports |
 
-Variable annotations are an important aspect of Python programming. In this section, we will explore how to use variable annotations to improve code readability and maintainability.
+---
 
-## Working with Databases
+## 🚀 Usage
 
-Databases are an integral part of most backend applications. In this section, we will cover the basics of working with databases in Python, including connecting to a database, querying data, and performing CRUD operations.
+```bash
+# Run mypy on any file
+mypy 0-add.py
+mypy 5-sum_list.py
+mypy 101-safely_get_value.py
 
-## Building RESTful APIs
+# Run with strict mode
+mypy --strict 0-add.py
+```
 
-RESTful APIs are a common way to expose backend functionality to client applications. In this section, we will learn how to build RESTful APIs using Python and popular frameworks such as Flask and Django.
+---
 
-## Authentication and Authorization
+## 🧪 Running Tests
 
-Securing backend applications is crucial to protect sensitive data and ensure user privacy. In this section, we will explore different authentication and authorization mechanisms and how to implement them in Python.
+Each file has a corresponding `*-main.py` test file:
 
-## Testing and Debugging
+```bash
+python3 0-main.py   # Test add function
+python3 1-main.py   # Test concat
+python3 2-main.py   # Test floor
+python3 3-main.py   # Test to_str
+python3 4-main.py   # Test variable definitions
+python3 5-main.py   # Test sum_list
+python3 6-main.py   # Test sum_mixed_list
+python3 7-main.py   # Test to_kv
+python3 8-main.py   # Test make_multiplier
+python3 9-main.py   # Test element_length
+python3 100-main.py # Test safe_first_element
+python3 101-main.py # Test safely_get_value
+```
 
-Testing and debugging are essential skills for any developer. In this section, we will cover various testing techniques and debugging tools to help you ensure the quality and reliability of your backend code.
+---
 
-## Deployment and Scaling
+## 📚 Key Concepts
 
-Once your backend application is ready, you need to deploy it to a production environment and ensure it can handle high traffic loads. In this section, we will discuss different deployment strategies and scaling techniques.
+| Concept | Example |
+|---------|---------|
+| **Basic types** | `x: int = 5`, `name: str = "hello"` |
+| **Function signatures** | `def add(a: float, b: float) -> float:` |
+| **Container types** | `List[float]`, `Dict[str, int]`, `Tuple[str, float]` |
+| **Union types** | `Union[int, float]`, `Optional[str]` (shorthand for `Union[str, None]`) |
+| **Callable** | `Callable[[float], float]` — function taking float, returning float |
+| **Iterable/Sequence** | `Iterable[Sequence]` — generic iterable of sequences |
+| **Mapping** | `Mapping` — read-only dict-like interface |
+| **Generics** | `TypeVar('T')` — for generic functions |
+| **TYPE_CHECKING** | `if TYPE_CHECKING: import ...` — imports only for type checkers |
 
-## Additional Resources
+---
 
-In this section, you will find a curated list of additional resources, including books, tutorials, and online courses, to further enhance your backend development skills.
+## 📚 Learning Outcomes
+
+- ✅ Annotate variables, parameters, and return types
+- ✅ Use `typing` module: `List`, `Dict`, `Tuple`, `Union`, `Optional`, `Callable`, `Iterable`, `Sequence`, `Mapping`, `Any`
+- ✅ Define generic functions with `TypeVar`
+- ✅ Handle circular imports with `TYPE_CHECKING`
+- ✅ Validate types with `mypy --strict`
+
+---
+
+## 📄 License
+
+MIT License - see root [LICENSE](../LICENSE)
